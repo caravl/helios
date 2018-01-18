@@ -1,11 +1,26 @@
 {
   "name": "morningai",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caravl/morningAI.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/caravl/morningAI/issues"
+  },
+  "homepage": "https://github.com/caravl/morningAI#readme",
+  "description": "",
+  "dependencies": {
+    "apiai": "^4.0.3",
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4"
+  }
 }
