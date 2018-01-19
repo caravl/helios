@@ -8,7 +8,10 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
 
 const recognition = new SpeechRecognition()
 recognition.lang = 'en-US'
-recognition.interimResults = false
+recognition.interimResults = false // return results that are final
+recognition.continuous = true // continuous results for each recognition
+// continues until read through each response 2x
+
 
 // capture the DOM reference for the button and listen for the click event to initiate speech recognition
 // when the button is clicked, speech recognition begins
@@ -48,5 +51,8 @@ function syntheticVoice(text) {
 /* --------- GET RESPONSE FROM SERVER USING SOCKET ------------- */
 // browser socket on getting a bot reply, take the reply and pass the reply into the function that generates synthetic voice
 socket.on('bot reply', function(replyText) {
+  // if response doesn't meet significant recognition
+  // recognition.onnomatch()
+
   syntheticVoice(replyText)
 })
