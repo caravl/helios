@@ -29,7 +29,7 @@ io.on('connection', function(socket) {
   socket.on('chat message', (text) => {
     // take the text emited with 'chat message'
     // get a reply from API.AI
-    console.log('socket')
+    console.log('socket', text)
     let apiaiReq = apiai.textRequest(text, {
       sessionId: 'APIAI_SESSION_ID'
     })

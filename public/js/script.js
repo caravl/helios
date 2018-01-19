@@ -27,7 +27,7 @@ recognition.addEventListener('result', (evt) => {
   // returns a SpeechRecognitionResultList {} containing the evt.result and retrieve the text in an array
 
   console.log('Confidence: ', evt.results[0][0].confidence)
-  console.log('text: ', text)
+  console.log('user says: ', text)
 
   // sockets emit to server
   socket.emit('chat message', text) // emits to server there's a chat message and pass in what was said
@@ -54,11 +54,28 @@ socket.on('bot reply', function(replyText) {
   // if response doesn't meet significant recognition
   // recognition.onnomatch()
 
-  // if reply has 'timer' in it, reply with 'Ok I'll set a timer'
-  // and setTimeout with a timer up by sythenticVoice('what I want it to say')
-  setTimeout(function () {
-    console.log('setTimeout') // logs after 5 seconds
+  // if reply has the word timer in it, respond with "I'll set a timer" then setTimeout for the time
+  if (replyText.split(' ').includes('timer')) {
+    console.log('yes timer')
+    // find the integer
+    // const array = replyText.split(' ')
+    // const minutes = array.find(function(element) {
+    //   var num = element.replace(/[^0-9]/g,'')
+    //   console.log('num: ', num)
+    //   return num
+    // })
+    // console.log('minutes: ', minutes)
+    const newReply = `OK, I'll set a timer for 10 minutes`
+    syntheticVoice(newReply)
+    setTimeout(function () {
+      const timerMessage = `Time's up. Great Job, Cara.`
+      syntheticVoice(timerMessage)
+    }, 1000)
+    clearTimeout();
+    console.log("we out")
+
+  } else {
     syntheticVoice(replyText)
-  }, 5000)
-  // syntheticVoice(replyText)
+  }
+
 })
