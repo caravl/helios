@@ -55,10 +55,10 @@ socket.on('bot reply', function(replyText) {
   // recognition.onnomatch()
 
   // if reply has 'timer' in it, reply with 'Ok I'll set a timer'
-  // and setTimeout with a timer up
+  // and setTimeout with a timer up by sythenticVoice('what I want it to say')
   setTimeout(function () {
     console.log('setTimeout') // logs after 5 seconds
-    syntheticVoice('timer done')
+    syntheticVoice(replyText)
   }, 5000)
   // syntheticVoice(replyText)
 })
