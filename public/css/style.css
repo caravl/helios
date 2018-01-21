@@ -1,0 +1,98 @@
+body, html, head {
+  height: 100%;
+  background: #363f4f;
+  color: #dcdfe5;
+  font-family: 'Roboto', sans-serif;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+.main-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 0;
+  width: 100vw;
+  color: white;
+  height: 6em;
+  /* left: 0;
+  top: 0; */
+  margin: 0;
+  letter-spacing: .25em;
+}
+
+.main-body {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding: 3em;
+}
+
+.list-container {
+  border: 1px solid green;
+  padding: 3em;
+  width: 300px;
+}
+
+.on-button-container {
+  padding: 3em;
+  border: 1px solid orange;
+}
+
+.on-button {
+  border-radius: 50%;
+  height: 300px;
+  width: 300px;
+  color: white;
+  font-size: 2.5em;
+  background: yellow;
+  border: none;
+}
+
+.on-button:focus {
+  outline: 0;
+  animation-name: pulse_animation;
+	animation-duration: 3000ms;
+	transform-origin:70% 70%;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes pulse_animation {
+	0% { transform: scale(1); }
+	30% { transform: scale(1); }
+	40% { transform: scale(1.08); }
+	50% { transform: scale(1); }
+	60% { transform: scale(1); }
+	70% { transform: scale(1.05); }
+	80% { transform: scale(1); }
+	100% { transform: scale(1); }
+}
+
+/* --------- off button ------------ */
+
+.off-button-container {
+  padding: 3em;
+  border: 1px solid purple;
+}
+
+.off-button {
+  border-radius: 5px;
+  height: 100px;
+  width: 300px;
+  color: white;
+  font-size: 1.5em;
+  background: yellow;
+  border: none;
+}
+
+.off-button:focus {
+  outline: 0;
+}

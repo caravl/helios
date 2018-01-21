@@ -72,8 +72,6 @@ socket.on('bot reply', function(replyText) {
       syntheticVoice(timerMessage)
     }, 1000)
     clearTimeout();
-    console.log("we out")
-
   } else {
     syntheticVoice(replyText)
   }
