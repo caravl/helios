@@ -15,7 +15,8 @@ recognition.continuous = true // continuous results for each recognition
 
 // capture the DOM reference for the button and listen for the click event to initiate speech recognition
 // when the button is clicked, speech recognition begins
-document.querySelector('button').addEventListener('click', () => {
+document.querySelector('.on-button').addEventListener('click', () => {
+  console.log('******** START ********')
   recognition.start()
 })
 /* ----------- speech recognition has started -------------- */
@@ -65,15 +66,20 @@ socket.on('bot reply', function(replyText) {
     //   return num
     // })
     // console.log('minutes: ', minutes)
-    const newReply = `OK, I'll set a timer for 10 minutes`
-    syntheticVoice(newReply)
+    // const newReply = `OK, I'll set a timer for 10 minutes`
+    syntheticVoice(replyText)
     setTimeout(function () {
       const timerMessage = `Time's up. Great Job, Cara.`
       syntheticVoice(timerMessage)
-    }, 1000)
+    }, 2000)
     clearTimeout();
   } else {
     syntheticVoice(replyText)
   }
 
+})
+
+document.querySelector('.off-button').addEventListener('click', () => {
+  console.log('^^^^^^^^ STOP ^^^^^^^^')
+  recognition.stop()
 })

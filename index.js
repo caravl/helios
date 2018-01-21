@@ -44,7 +44,7 @@ io.on('connection', function(socket) {
       console.log('error: ', error)
     })
 
-    apiaiReq.end()
+    // apiaiReq.end()
 
   })
 

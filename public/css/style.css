@@ -18,42 +18,68 @@ body, html, head {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2em 0;
+  padding: 1.5em 0;
   width: 100vw;
-  color: white;
+  color: yellow;
   height: 6em;
   /* left: 0;
   top: 0; */
   margin: 0;
-  letter-spacing: .25em;
+  letter-spacing: .4em;
+  /* border: 1px solid pink; */
 }
 
 .main-body {
   display: flex;
   justify-content: center;
   flex-direction: row;
-  padding: 3em;
+  padding: 2em;
+  padding-top: 1em;
 }
 
+/* --------- list ------------ */
+
 .list-container {
-  border: 1px solid green;
-  padding: 3em;
+  /* border: 1px solid green; */
+  display: block;
+  padding: 1em;
   width: 300px;
+  width: 400px;
 }
+
+.list-container h3 {
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  letter-spacing: .05em;
+}
+
+.list-container p {
+  font-size: 1.5em;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  color: yellow;
+  letter-spacing: .05em;
+  /* text-decoration: underline; */
+}
+
+/* --------- on button ------------ */
 
 .on-button-container {
   padding: 3em;
-  border: 1px solid orange;
 }
 
 .on-button {
   border-radius: 50%;
   height: 300px;
   width: 300px;
-  color: white;
+  color: #363f4f;
   font-size: 2.5em;
   background: yellow;
   border: none;
+  font-style: bold;
+  letter-spacing: .2em;
 }
 
 .on-button:focus {
@@ -79,18 +105,23 @@ body, html, head {
 /* --------- off button ------------ */
 
 .off-button-container {
-  padding: 3em;
-  border: 1px solid purple;
+  padding: 2em;
+  display: block;
+  justify-content: center;
+  align-items: center;
 }
 
 .off-button {
   border-radius: 5px;
-  height: 100px;
+  height: 70px;
   width: 300px;
-  color: white;
-  font-size: 1.5em;
-  background: yellow;
+  color: #363f4f;
+  font-size: 1em;
+  background: white;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .off-button:focus {
