@@ -1,7 +1,9 @@
+// import { read } from "fs";
+
 'use strict';
 
 // initiate sockets
-var socket = io();
+const socket = io();
 
 // invoke an instance of SpeechRecognition(the controller interface of the Web Speech API for voice recognition)
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
@@ -9,16 +11,21 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
 const recognition = new SpeechRecognition()
 recognition.lang = 'en-US'
 recognition.interimResults = false // return results that are final
-recognition.continuous = true // continuous results for each recognition
+// recognition.continuous = true // continuous results for each recognition
 // continues until read through each response 2x
 
 
 // capture the DOM reference for the button and listen for the click event to initiate speech recognition
 // when the button is clicked, speech recognition begins
-document.querySelector('button').addEventListener('click', () => {
+document.querySelector('.on-button').addEventListener('click', () => {
+  console.log('******** START ********')
   recognition.start()
 })
 /* ----------- speech recognition has started -------------- */
+recognition.addEventListener('speechstart', () => {
+  console.log('Speech has been detected.')
+})
+
 
 // result event is used to retrieve what is said into text
 recognition.addEventListener('result', (evt) => {
@@ -31,7 +38,13 @@ recognition.addEventListener('result', (evt) => {
 
   // sockets emit to server
   socket.emit('chat message', text) // emits to server there's a chat message and pass in what was said
+  console.log('sent to dialogflow')
 })
+
+recognition.addEventListener('speechend', () => {
+  console.log('stop')
+  recognition.stop();
+});
 
 /* --------- GENERATE A SYNTHETIC VOICE ------------- */
 // to create a synthetic voice for our AI, we'll use `SpeechSynthesis` controller interface of the Web Speech API
@@ -57,25 +70,20 @@ socket.on('bot reply', function(replyText) {
   // if reply has the word timer in it, respond with "I'll set a timer" then setTimeout for the time
   if (replyText.split(' ').includes('timer')) {
     console.log('yes timer')
-    // find the integer
-    // const array = replyText.split(' ')
-    // const minutes = array.find(function(element) {
-    //   var num = element.replace(/[^0-9]/g,'')
-    //   console.log('num: ', num)
-    //   return num
-    // })
-    // console.log('minutes: ', minutes)
-    const newReply = `OK, I'll set a timer for 10 minutes`
-    syntheticVoice(newReply)
+    syntheticVoice(replyText)
     setTimeout(function () {
-      const timerMessage = `Time's up. Great Job, Cara.`
+      const timerMessage = `Time's up. Great Job.`
       syntheticVoice(timerMessage)
-    }, 1000)
+      clearTimeout()
+    }, 2000)
     clearTimeout();
-    console.log("we out")
-
   } else {
     syntheticVoice(replyText)
   }
 
+})
+
+document.querySelector('.off-button').addEventListener('click', () => {
+  console.log('^^^^^^^^ STOP ^^^^^^^^')
+  recognition.stop()
 })

@@ -38,13 +38,14 @@ io.on('connection', function(socket) {
 
       let aiText = response.result.fulfillment.speech
       socket.emit('bot reply', aiText) // send result back to browser
+      console.log('send reply back to browser')
     })
 
     apiaiReq.on('error', (error) => {
       console.log('error: ', error)
     })
 
-    apiaiReq.end()
+    apiaiReq.end() // keeps from responding to itself
 
   })
 
