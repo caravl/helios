@@ -38,7 +38,7 @@ recognition.addEventListener('result', (evt) => {
 
   // sockets emit to server
   socket.emit('chat message', text) // emits to server there's a chat message and pass in what was said
-  console.log('sent to dialogflow')
+
 })
 
 recognition.addEventListener('speechend', () => {
@@ -64,10 +64,7 @@ function syntheticVoice(text) {
 /* --------- GET RESPONSE FROM SERVER USING SOCKET ------------- */
 // browser socket on getting a bot reply, take the reply and pass the reply into the function that generates synthetic voice
 socket.on('bot reply', function(replyText) {
-  // if response doesn't meet significant recognition
-  // recognition.onnomatch()
 
-  // if reply has the word timer in it, respond with "I'll set a timer" then setTimeout for the time
   if (replyText.split(' ').includes('timer')) {
     console.log('yes timer')
     syntheticVoice(replyText)
@@ -75,7 +72,7 @@ socket.on('bot reply', function(replyText) {
       const timerMessage = `Time's up. Great Job.`
       syntheticVoice(timerMessage)
       clearTimeout()
-    }, 2000)
+    }, 5000)
     clearTimeout();
   } else {
     syntheticVoice(replyText)
